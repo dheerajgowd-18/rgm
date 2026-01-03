@@ -139,7 +139,7 @@ export function SportsEvents() {
           <div className="inline-block px-4 py-1.5 mb-4 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest">
             The Main Events
           </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-4 tracking-tighter text-slate-900">
+          <h2 className="text-3xl md:text-6xl font-black mb-4 tracking-tighter text-slate-900">
             SPORTS <span className="text-secondary italic">CHAMPIONSHIP</span>
           </h2>
           <p className="text-base md:text-lg text-slate-500 max-w-2xl mx-auto font-medium">
@@ -157,7 +157,7 @@ export function SportsEvents() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card className="group overflow-hidden border-none bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] rounded-2xl h-full flex flex-col hover:shadow-2xl transition-all duration-500">
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-44 sm:h-56 overflow-hidden">
                   <img
                     src={sport.image || "/placeholder.svg"}
                     alt={sport.name}
@@ -167,7 +167,7 @@ export function SportsEvents() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <div className="absolute bottom-4 left-4">
-                    <span className="text-2xl font-black text-white tracking-tight uppercase">{sport.name}</span>
+                    <span className="text-xl sm:text-2xl font-black text-white tracking-tight uppercase">{sport.name}</span>
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">

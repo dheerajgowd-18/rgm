@@ -122,4 +122,11 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Mobile adjustments */
+  @media (max-width: 640px) {
+    html { font-size: 14px; }
+    /* add top padding so fixed nav does not overlap sections on small screens */
+    #schedule, #sports { padding-top: 3.75rem; }
+  }
 }
