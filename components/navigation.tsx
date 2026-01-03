@@ -23,6 +23,20 @@ export function Navigation() {
     { label: "Schedule", href: "#schedule" },
   ]
 
+  // Close mobile menu and scroll to section smoothly. This ensures taps work reliably on mobile.
+  const handleNavClick = (href: string) => {
+    setIsOpen(false)
+    const id = href.startsWith("#") ? href.slice(1) : href
+    setTimeout(() => {
+      if (href === "#") {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      } else {
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: "smooth" })
+      }
+    }, 120)
+  }
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -57,6 +71,10 @@ export function Navigation() {
               >
                 <a
                   href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleNavClick(item.href)
+                  }}
                   className="px-3 lg:px-4 py-2 text-sm lg:text-base text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted/50"
                 >
                   {item.label}
@@ -72,6 +90,7 @@ export function Navigation() {
             className="md:hidden"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </Button>
@@ -93,7 +112,10 @@ export function Navigation() {
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleNavClick(item.href)
+                  }}
                   className="block px-4 py-3 text-base text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
                 >
                   {item.label}

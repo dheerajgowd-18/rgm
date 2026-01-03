@@ -33,7 +33,7 @@ export function OfficialBanner() {
           transition={{ duration: 0.5 }}
           className="relative max-w-[1100px] mx-auto overflow-x-auto pb-4 md:pb-0 scrollbar-hide"
         >
-          <div className="min-w-[800px] md:min-w-full">
+          <div className="min-w-full md:min-w-[800px]">
             <img
               src="/images/official-event-banner.jpg"
               alt="Official Event Banner for 13th JNTUA Inter Collegiate Games Meet"
