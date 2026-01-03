@@ -13,7 +13,7 @@ export function Hero() {
   }
 
   return (
-    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-[#F5F7FB]">
+    <section className="relative pt-16 sm:pt-20 pb-10 sm:pb-12 md:pt-32 md:pb-24 overflow-hidden bg-[#F5F7FB]">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#EDE9FE_0%,#F5F7FB_60%)] opacity-100" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#6366F10A_1px,transparent_1px),linear-gradient(to_bottom,#6366F10A_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-20" />
@@ -24,17 +24,17 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-16 mb-8 sm:mb-10"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 md:gap-16 mb-6 sm:mb-10"
           >
             <img
               src="/images/image-removebg-preview.png"
               alt="JNTU Logo"
-              className="h-12 sm:h-20 md:h-32 w-auto object-contain drop-shadow-sm"
+              className="h-10 sm:h-16 md:h-24 lg:h-32 w-auto object-contain drop-shadow-sm"
             />
             <img
               src="/images/rgm-cet-logo.png"
               alt="RGM College Logo"
-              className="h-12 sm:h-20 md:h-32 w-auto object-contain drop-shadow-sm"
+              className="h-10 sm:h-16 md:h-24 lg:h-32 w-auto object-contain drop-shadow-sm"
             />
           </motion.div>
 
@@ -42,7 +42,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest mb-3 sm:mb-4"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest mb-2 sm:mb-4"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -55,7 +55,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-3xl sm:text-4xl md:text-7xl font-black mb-4 sm:mb-6 tracking-tight text-balance leading-snug md:leading-[0.9] text-slate-900"
+            className="text-2xl sm:text-3xl md:text-6xl lg:text-7xl font-black mb-3 sm:mb-6 tracking-tight text-balance leading-tight sm:leading-snug md:leading-[0.95] text-slate-900"
           >
             <span className="block">13<span className="text-primary font-serif italic">th</span> JNTUA</span>
             <span className="block sm:inline"> <span className="text-secondary italic">INTER COLLEGIATE</span></span>
@@ -66,7 +66,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-sm sm:text-base md:text-xl text-slate-600 mb-6 md:mb-8 max-w-full sm:max-w-2xl mx-auto font-medium"
+            className="text-sm sm:text-base md:text-xl text-slate-600 mb-4 md:mb-8 max-w-full sm:max-w-2xl mx-auto font-medium"
           >
             RGM College of Engineering & Technology (Autonomous)
             <br />
