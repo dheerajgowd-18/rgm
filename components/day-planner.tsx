@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -180,6 +180,51 @@ const eventData = {
 export function DayPlanner() {
   const [activeTab, setActiveTab] = useState("day1")
   const [activeSection, setActiveSection] = useState("schedule") // Default to schedule
+
+  // Support deep links via hash. Examples:
+  //  - #schedule/day1/food  => opens Day 1, Dining
+  //  - #schedule/day2/sports => opens Day 2, Sports
+  // We also update the hash when the user switches tabs/sections so links are shareable.
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const parseHash = () => {
+      const h = window.location.hash.slice(1) // remove '#'
+      if (!h) return
+
+      // support /-separated: schedule/day1/food
+      const parts = h.split("/")
+      if (parts[0] === "schedule") {
+        const day = parts[1]
+        const section = parts[2]
+        if (day && ["day1", "day2", "day3"].includes(day)) setActiveTab(day)
+        if (section && ["schedule", "sports", "food"].includes(section)) setActiveSection(section)
+      }
+
+      // support short form: day1/food
+      if (["day1", "day2", "day3"].includes(parts[0])) {
+        const day = parts[0]
+        const section = parts[1]
+        setActiveTab(day)
+        if (section && ["schedule", "sports", "food"].includes(section)) setActiveSection(section)
+      }
+    }
+
+    // parse initial
+    parseHash()
+
+    const onHash = () => parseHash()
+    window.addEventListener("hashchange", onHash)
+    return () => window.removeEventListener("hashchange", onHash)
+  }, [])
+
+  // update hash when user changes tab or section
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const newHash = `schedule/${activeTab}/${activeSection}`
+    const curr = window.location.hash.slice(1)
+    if (curr !== newHash) history.replaceState(null, "", `#${newHash}`)
+  }, [activeTab, activeSection])
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F5F7FB]" id="schedule">
