@@ -31,6 +31,22 @@ export function Footer() {
               <br />
               Accredited by NBA (7 times) | Accredited by NAAC with A+ Grade
             </p>
+
+            <p className="mt-3">
+              <a
+                href="https://drive.google.com/file/d/1557afOzNYaWHXfY-rC4Z0iJNgc74Z0FD/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm text-foreground/80 hover:underline hover:text-primary transition-colors gap-2"
+                aria-label="Policies and Declarations PDF (opens in a new tab on Google Drive)"
+                title="Policies & Declarations (opens in a new tab)"
+              >
+                <span className="text-[14px] leading-none" aria-hidden>
+                  📄
+                </span>
+                <span className="leading-tight">Policies & Declarations (PDF)</span>
+              </a>
+            </p>
           </motion.div>
 
           {/* Quick Links */}
