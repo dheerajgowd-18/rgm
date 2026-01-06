@@ -177,9 +177,34 @@ const eventData = {
   },
 }
 
-export function DayPlanner() {
+import { useSearchParams } from "next/navigation"
+import { Suspense, useEffect } from "react"
+
+// ... imports remain the same, just adding useSearchParams and Suspense
+
+function DayPlannerContent() {
+  const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState("day1")
-  const [activeSection, setActiveSection] = useState("schedule") // Default to schedule
+  const [activeSection, setActiveSection] = useState("schedule")
+
+  useEffect(() => {
+    const section = searchParams.get("section")
+    const day = searchParams.get("day")
+
+    if (section && ["schedule", "sports", "food"].includes(section)) {
+      setActiveSection(section)
+    }
+    if (day && ["day1", "day2", "day3"].includes(day)) {
+      setActiveTab(day)
+    }
+
+    if (section || day) {
+      const el = document.getElementById("schedule")
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 500)
+      }
+    }
+  }, [searchParams])
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F5F7FB] relative overflow-hidden" id="schedule">
@@ -359,5 +384,13 @@ export function DayPlanner() {
         </Tabs>
       </div>
     </section>
+  )
+}
+
+export function DayPlanner() {
+  return (
+    <Suspense fallback={<div className="py-20 text-center">Loading Events...</div>}>
+      <DayPlannerContent />
+    </Suspense>
   )
 }
