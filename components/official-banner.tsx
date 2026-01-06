@@ -44,12 +44,7 @@ export function OfficialBanner() {
             />
           </div>
 
-          {/* Mobile indicator for scroll */}
-          <div className="md:hidden mt-4 text-center">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-200/50 px-3 py-1 rounded-full">
-              ← Swipe to see full banner →
-            </span>
-          </div>
+
         </motion.div>
       </div>
     </section>

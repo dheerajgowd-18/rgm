@@ -182,8 +182,14 @@ export function DayPlanner() {
   const [activeSection, setActiveSection] = useState("schedule") // Default to schedule
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F5F7FB]" id="schedule">
-      <div className="container mx-auto max-w-7xl">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F5F7FB] relative overflow-hidden" id="schedule">
+      {/* Background Elements for YuvaYuva3k Vibe */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl opacity-50" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/5 rounded-full blur-3xl opacity-50" />
+      </div>
+
+      <div className="container mx-auto max-w-7xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -191,208 +197,165 @@ export function DayPlanner() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-6xl font-black mb-4 tracking-tighter uppercase text-slate-900">
-            Event <span className="text-secondary italic">Roadmap</span>
+          <h2 className="text-4xl md:text-7xl font-black mb-4 tracking-tighter uppercase text-slate-900 drop-shadow-sm">
+            Event <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 italic">Roadmap</span>
           </h2>
-          <p className="text-base md:text-lg text-slate-500 max-w-2xl mx-auto font-medium">
-            Plan your tournament experience with our comprehensive 3-day schedule.
+          <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto font-medium">
+            Experience the pulse of the tournament.
           </p>
         </motion.div>
 
+        {/* 1. Category Selection (First Level) */}
+        <div className="flex justify-center mb-10 gap-4 flex-wrap">
+          <button
+            onClick={() => setActiveSection("schedule")}
+            className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-wider transition-all duration-300 border-2 shadow-lg ${activeSection === "schedule"
+                ? "bg-gradient-to-r from-indigo-600 to-blue-600 border-transparent text-white scale-105 shadow-indigo-500/25 ring-2 ring-indigo-200 ring-offset-2"
+                : "bg-white border-slate-100 text-slate-500 hover:border-indigo-200 hover:text-indigo-600 hover:shadow-xl hover:-translate-y-1"
+              }`}
+          >
+            <Calendar className="w-5 h-5" />
+            Schedule
+          </button>
+          <button
+            onClick={() => setActiveSection("sports")}
+            className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-wider transition-all duration-300 border-2 shadow-lg ${activeSection === "sports"
+                ? "bg-gradient-to-r from-orange-500 to-pink-600 border-transparent text-white scale-105 shadow-orange-500/25 ring-2 ring-orange-200 ring-offset-2"
+                : "bg-white border-slate-100 text-slate-500 hover:border-orange-200 hover:text-orange-600 hover:shadow-xl hover:-translate-y-1"
+              }`}
+          >
+            <Trophy className="w-5 h-5" />
+            Sports
+          </button>
+          <button
+            onClick={() => setActiveSection("food")}
+            className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-wider transition-all duration-300 border-2 shadow-lg ${activeSection === "food"
+                ? "bg-gradient-to-r from-emerald-500 to-teal-600 border-transparent text-white scale-105 shadow-emerald-500/25 ring-2 ring-emerald-200 ring-offset-2"
+                : "bg-white border-slate-100 text-slate-500 hover:border-emerald-200 hover:text-emerald-600 hover:shadow-xl hover:-translate-y-1"
+              }`}
+          >
+            <Utensils className="w-5 h-5" />
+            Dining
+          </button>
+        </div>
+
+        {/* 2. Day Selection (Second Level) via Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full max-w-xl mx-auto grid-cols-3 mb-10 h-auto p-1.5 bg-blue-50/50 border border-blue-100 shadow-sm rounded-2xl">
+          <TabsList className="grid w-full max-w-xl mx-auto grid-cols-3 mb-12 h-auto p-1.5 bg-white/50 backdrop-blur-sm border border-slate-200/60 shadow-inner rounded-2xl">
             {["day1", "day2", "day3"].map((day, idx) => (
               <TabsTrigger
                 key={day}
                 value={day}
-                className="py-3 text-sm sm:text-base font-black uppercase tracking-wider rounded-xl data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg text-slate-600 hover:text-primary transition-all"
+                className="py-3 text-sm sm:text-base font-black uppercase tracking-wider rounded-xl data-[state=active]:bg-slate-900 data-[state=active]:text-white data-[state=active]:shadow-lg text-slate-400 hover:text-slate-700 transition-all"
               >
-                <CalendarDays className="w-4 h-4 mr-2" />
                 Day {idx + 1}
               </TabsTrigger>
             ))}
           </TabsList>
 
-          <div className="flex justify-center mb-12 gap-3 flex-wrap">
-            <button
-              onClick={() => setActiveSection("schedule")}
-              className={`flex items-center gap-2 px-8 py-4 rounded-xl font-black text-sm uppercase tracking-wider transition-all border-2 ${
-                activeSection === "schedule"
-                  ? "bg-primary border-primary text-white shadow-xl scale-105"
-                  : "bg-white border-slate-200 text-slate-700 hover:border-primary/30 hover:bg-slate-50"
-              }`}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSection + activeTab}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
             >
-              <Calendar className="w-4 h-4" />
-              Schedule
-            </button>
-            <button
-              onClick={() => setActiveSection("sports")}
-              className={`flex items-center gap-2 px-8 py-4 rounded-xl font-black text-sm uppercase tracking-wider transition-all border-2 ${
-                activeSection === "sports"
-                  ? "bg-primary border-primary text-white shadow-xl scale-105"
-                  : "bg-white border-slate-200 text-slate-700 hover:border-primary/30 hover:bg-slate-50"
-              }`}
-            >
-              <Trophy className="w-4 h-4" />
-              Sports
-            </button>
-            <button
-              onClick={() => setActiveSection("food")}
-              className={`flex items-center gap-2 px-8 py-4 rounded-xl font-black text-sm uppercase tracking-wider transition-all border-2 ${
-                activeSection === "food"
-                  ? "bg-emerald-600 border-emerald-600 text-white shadow-xl scale-105"
-                  : "bg-white border-slate-200 text-slate-700 hover:border-emerald-500/30 hover:bg-slate-50"
-              }`}
-            >
-              <Utensils className="w-4 h-4" />
-              Dining
-            </button>
-          </div>
-
-          {Object.entries(eventData).map(([day, data]) => (
-            <TabsContent key={day} value={day}>
-              <AnimatePresence mode="wait">
-                {activeSection === "food" && (
-                  <motion.div
-                    key="food"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="flex items-center gap-3 mb-8">
-                      <div className="p-3 bg-emerald-50 rounded-xl">
-                        <Utensils className="w-6 h-6 text-emerald-600" />
+              {/* Content Rendering based on Active Section & Tab */}
+              {activeSection === "schedule" && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {eventData[activeTab as keyof typeof eventData].schedule.map((event, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className="p-5 rounded-2xl bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(99,102,241,0.1)] transition-all group border-l-[6px] border-l-indigo-500"
+                    >
+                      <h4 className="font-bold mb-2 text-lg text-slate-900 group-hover:text-indigo-600 transition-colors">{event.title}</h4>
+                      <div className="space-y-1.5">
+                        <p className="text-sm font-medium text-slate-500 flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-indigo-400" />
+                          {event.time}
+                        </p>
+                        <p className="text-sm font-medium text-slate-500 flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-indigo-400" />
+                          {event.venue}
+                        </p>
                       </div>
-                      <h3 className="text-2xl font-black text-slate-900 uppercase">Food & Dining</h3>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {data.food.map((meal, index) => (
-                        <Card
-                          key={index}
-                          className="overflow-hidden border-none bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] rounded-2xl group hover:shadow-2xl transition-all duration-500"
-                        >
-                          <div className="relative h-44 sm:h-64 overflow-hidden">
-                            <img
-                              src={meal.image || "/placeholder.svg"}
-                              alt={meal.meal}
-                              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                            <div className="absolute bottom-5 left-5">
-                              <span className="inline-block px-3 py-1 rounded-lg bg-emerald-600 text-xs font-black text-white uppercase tracking-widest mb-3">
-                                {meal.meal}
-                              </span>
-                              <p className="text-sm text-white flex items-center gap-2 font-black">
-                                <Clock className="w-4 h-4 text-emerald-400" />
-                                {meal.time}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="p-5">
-                            <div className="space-y-4">
-                              {meal.items.map((item, idx) => (
-                                <div key={idx} className="group border-b border-border/50 last:border-0 pb-3 last:pb-0">
-                                  <h5 className="font-bold text-sm mb-1 text-foreground group-hover:text-emerald-600 transition-colors">
-                                    {item.name}
-                                  </h5>
-                                  <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </Card>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
 
-                {activeSection === "schedule" && (
-                  <motion.div
-                    key="schedule"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="flex items-center gap-3 mb-8">
-                      <div className="p-2 bg-secondary/20 rounded-lg">
-                        <Calendar className="w-5 h-5 text-secondary" />
+              {activeSection === "sports" && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {eventData[activeTab as keyof typeof eventData].sports.map((sport, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className="p-5 rounded-2xl bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(249,115,22,0.1)] transition-all group border-l-[6px] border-l-orange-500"
+                    >
+                      <h4 className="font-bold mb-2 text-lg text-slate-900 group-hover:text-orange-600 transition-colors">{sport.title}</h4>
+                      <div className="space-y-1.5">
+                        <p className="text-sm font-medium text-slate-500 flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-orange-400" />
+                          {sport.time}
+                        </p>
+                        <p className="text-sm font-medium text-slate-500 flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-orange-400" />
+                          {sport.venue}
+                        </p>
                       </div>
-                      <h3 className="text-2xl font-bold">Event Schedule</h3>
-                    </div>
-                    <Card className="p-5 bg-card shadow-xl">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        {data.schedule.map((event, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: index * 0.03 }}
-                            className="p-4 rounded-lg bg-gradient-to-r from-secondary/10 to-transparent hover:from-secondary/20 transition-all border-l-4 border-secondary shadow-sm hover:shadow-md"
-                          >
-                            <h4 className="font-bold mb-2 text-base text-foreground">{event.title}</h4>
-                            <div className="space-y-2">
-                              <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-                                <Clock className="w-3.5 h-3.5 text-secondary flex-shrink-0" />
-                                <span className="font-semibold">{event.time}</span>
-                              </p>
-                              <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-                                <MapPin className="w-3.5 h-3.5 text-secondary flex-shrink-0" />
-                                {event.venue}
-                              </p>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+
+              {activeSection === "food" && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {eventData[activeTab as keyof typeof eventData].food.map((meal, index) => (
+                    <Card
+                      key={index}
+                      className="overflow-hidden border-none bg-white shadow-lg rounded-3xl group hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 ring-1 ring-slate-100"
+                    >
+                      <div className="relative h-56 overflow-hidden">
+                        <img
+                          src={meal.image || "/placeholder.svg"}
+                          alt={meal.meal}
+                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
+                        <div className="absolute bottom-5 left-5">
+                          <span className="inline-block px-3 py-1 rounded-lg bg-emerald-500/90 backdrop-blur-sm text-xs font-black text-white uppercase tracking-widest mb-2 shadow-lg">
+                            {meal.meal}
+                          </span>
+                          <p className="text-sm text-white flex items-center gap-2 font-bold">
+                            <Clock className="w-4 h-4 text-emerald-300" />
+                            {meal.time}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <div className="space-y-4">
+                          {meal.items.map((item, idx) => (
+                            <div key={idx} className="group/item border-b border-dashed border-slate-100 last:border-0 pb-3 last:pb-0">
+                              <h5 className="font-bold text-sm mb-1 text-slate-800 group-hover/item:text-emerald-600 transition-colors">
+                                {item.name}
+                              </h5>
+                              <p className="text-xs text-slate-400 font-medium">{item.description}</p>
                             </div>
-                          </motion.div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
                     </Card>
-                  </motion.div>
-                )}
-
-                {activeSection === "sports" && (
-                  <motion.div
-                    key="sports"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="flex items-center gap-3 mb-8">
-                      <div className="p-2 bg-accent/20 rounded-lg">
-                        <Trophy className="w-5 h-5 text-accent" />
-                      </div>
-                      <h3 className="text-2xl font-bold">Sports Schedule</h3>
-                    </div>
-                    <Card className="p-5 bg-card shadow-xl">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        {data.sports.map((sport, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: index * 0.03 }}
-                            className="p-4 rounded-lg bg-gradient-to-r from-accent/10 to-transparent hover:from-accent/20 transition-all border-l-4 border-accent shadow-sm hover:shadow-md"
-                          >
-                            <h4 className="font-bold mb-2 text-base text-foreground">{sport.title}</h4>
-                            <div className="space-y-2">
-                              <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-                                <Clock className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-                                <span className="font-semibold">{sport.time}</span>
-                              </p>
-                              <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-                                <MapPin className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-                                {sport.venue}
-                              </p>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </Card>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </TabsContent>
-          ))}
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </Tabs>
       </div>
     </section>

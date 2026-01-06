@@ -65,39 +65,8 @@ export function Footer() {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-center sm:text-left"
-          >
-            <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4">Sports Events</h3>
-            <ul className="space-y-2">
-              {[
-                "Basketball",
-                "Volleyball",
-                "Table Tennis",
-                "Badminton",
-                "Hand Ball",
-                "Kabaddi",
-                "Football",
-                "Throw Ball",
-                "Rugby",
-                "Ball Badminton",
-              ].map((sport) => (
-                <li key={sport}>
-                  <a
-                    href="#sports"
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors inline-block"
-                  >
-                    {sport}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+          {/* Quick Links - Removed as per request */}
+          <div className="hidden"></div>
 
           {/* Contact */}
           <motion.div
