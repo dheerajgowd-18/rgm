@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
@@ -23,19 +23,49 @@ export function Navigation() {
     { label: "Schedule", href: "#schedule" },
   ]
 
-  // Close mobile menu and scroll to section smoothly. This ensures taps work reliably on mobile.
+  const menuRef = useRef<HTMLDivElement | null>(null)
+
+  // Close mobile menu and scroll to section smoothly with header offset.
   const handleNavClick = (href: string) => {
     setIsOpen(false)
     const id = href.startsWith("#") ? href.slice(1) : href
     setTimeout(() => {
+      const header = document.querySelector("nav")
+      const headerHeight = header ? (header as HTMLElement).offsetHeight : 80
+
       if (href === "#") {
         window.scrollTo({ top: 0, behavior: "smooth" })
       } else {
         const el = document.getElementById(id)
-        if (el) el.scrollIntoView({ behavior: "smooth" })
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 12
+          window.scrollTo({ top, behavior: "smooth" })
+        }
       }
     }, 120)
   }
+
+  // Lock body scroll when mobile menu is open, focus first link and handle Escape to close
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+      setTimeout(() => {
+        const firstLink = menuRef.current?.querySelector("a") as HTMLElement | null
+        if (firstLink) firstLink.focus()
+      }, 100)
+
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setIsOpen(false)
+      }
+      window.addEventListener("keydown", onKey)
+      return () => window.removeEventListener("keydown", onKey)
+    }
+
+    document.body.style.overflow = "auto"
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [isOpen])
 
   return (
     <nav
@@ -87,7 +117,7 @@ export function Navigation() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="md:hidden p-2 h-12 w-12 flex items-center justify-center"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
@@ -101,6 +131,7 @@ export function Navigation() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={menuRef}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

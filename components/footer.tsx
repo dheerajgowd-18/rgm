@@ -32,21 +32,37 @@ export function Footer() {
               Accredited by NBA (7 times) | Accredited by NAAC with A+ Grade
             </p>
 
-            <p className="mt-3">
-              <a
-                href="https://drive.google.com/file/d/1557afOzNYaWHXfY-rC4Z0iJNgc74Z0FD/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-sm text-foreground/80 hover:underline hover:text-primary transition-colors gap-2"
-                aria-label="Policies and Declarations PDF (opens in a new tab on Google Drive)"
-                title="Policies & Declarations (opens in a new tab)"
-              >
-                <span className="text-[14px] leading-none" aria-hidden>
-                  📄
-                </span>
-                <span className="leading-tight">Policies & Declarations (PDF)</span>
-              </a>
-            </p>
+            <div className="mt-3">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                <a
+                  href="https://drive.google.com/file/d/1UrTuD1WpCNLS-YHPgERtU9xFdOcrT6ji/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto flex items-center gap-3 px-4 py-3 h-12 border border-border rounded-md bg-white shadow-sm hover:shadow-md hover:bg-primary/5 hover:border-primary transition-shadow transition-colors text-sm font-medium text-foreground/95 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+                  aria-label="Policies & Declarations PDF (opens in a new tab on Google Drive)"
+                  title="Policies & Declarations (opens in a new tab)"
+                >
+                  <span className="text-lg leading-none" aria-hidden>
+                    📄
+                  </span>
+                  <span>Policies & Declarations (PDF)</span>
+                </a>
+
+                <a
+                  href="https://drive.google.com/file/d/1akYl7Rqu2l8KJgnFsDV-PI_l75GZwCdl/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto flex items-center gap-3 px-4 py-3 h-12 border border-border rounded-md bg-white shadow-sm hover:shadow-md hover:bg-primary/5 hover:border-primary transition-shadow transition-colors text-sm font-medium text-foreground/95 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+                  aria-label="Accommodation Rules PDF (opens in a new tab on Google Drive)"
+                  title="Accommodation Rules (opens in a new tab)"
+                >
+                  <span className="text-lg leading-none" aria-hidden>
+                    📄
+                  </span>
+                  <span>Accommodation Rules (PDF)</span>
+                </a>
+              </div>
+            </div>
           </motion.div>
 
           {/* Quick Links */}

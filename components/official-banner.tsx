@@ -31,11 +31,14 @@ export function OfficialBanner() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative max-w-[1100px] mx-auto overflow-x-auto pb-4 md:pb-0 scrollbar-hide"
+          className="relative max-w-[1100px] mx-auto overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory"
+          role="region"
+          aria-label="Official event banner - swipe horizontally to view full image"
         >
-          <div className="min-w-full md:min-w-[800px]">
+          <div className="min-w-full md:min-w-[800px] snap-start">
             <img
               src="/images/official-event-banner.jpg"
+              loading="lazy"
               alt="Official Event Banner for 13th JNTUA Inter Collegiate Games Meet"
               className="w-full h-auto rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.12)] border border-white/50"
             />
