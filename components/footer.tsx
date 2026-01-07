@@ -74,11 +74,11 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-center sm:text-left"
+            className="text-left lg:col-span-2"
           >
             <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4">Contact Info</h3>
             <ul className="space-y-3">
-              <li className="flex items-start gap-2 sm:gap-3 justify-center sm:justify-start">
+              <li className="flex items-start gap-2 sm:gap-3 justify-start">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground text-xs sm:text-sm text-left">
                   RGM College of Engineering & Technology
@@ -86,14 +86,14 @@ export function Footer() {
                   Nandyal-518501, A.P., India
                 </span>
               </li>
-              <li className="flex items-start gap-2 sm:gap-3 justify-center sm:justify-start">
+              <li className="flex items-start gap-2 sm:gap-3 justify-start">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-secondary flex-shrink-0 mt-0.5" />
                 <div className="text-muted-foreground text-xs sm:text-sm text-left">
                   <p className="font-semibold">Mr. P. Venkatesh</p>
                   <p className="text-xs">Physical Director</p>
                 </div>
               </li>
-              <li className="flex items-start gap-2 sm:gap-3 justify-center sm:justify-start">
+              <li className="flex items-start gap-2 sm:gap-3 justify-start">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-accent flex-shrink-0 mt-0.5" />
                 <div className="text-muted-foreground text-xs sm:text-sm text-left">
                   <p className="font-semibold">Prof. T. Narayana Reddy</p>
@@ -114,11 +114,11 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-6 sm:pt-8 border-t border-border">
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-xs sm:text-sm text-muted-foreground text-center">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-xs sm:text-sm text-muted-foreground text-left">
               © 2026 RGM College of Engineering & Technology. All rights reserved.
             </p>
-            <p className="text-xs text-muted-foreground text-center">13th JNTUA Inter Collegiate Games Meet 2025-26</p>
+            <p className="text-xs text-muted-foreground text-left sm:text-right">13th JNTUA Inter Collegiate Games Meet 2025-26</p>
           </div>
         </div>
       </div>

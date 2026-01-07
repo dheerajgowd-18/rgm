@@ -30,12 +30,12 @@ export function Hero() {
               <img
                 src="/images/image-removebg-preview.png"
                 alt="JNTU Logo"
-                className="h-10 sm:h-16 md:h-24 lg:h-32 w-auto object-contain drop-shadow-sm"
+                className="h-14 sm:h-16 md:h-24 lg:h-32 w-auto object-contain drop-shadow-sm"
               />
               <img
                 src="/images/rgm-cet-logo.png"
                 alt="RGM College Logo"
-                className="h-10 sm:h-16 md:h-24 lg:h-32 w-auto object-contain drop-shadow-sm"
+                className="h-14 sm:h-16 md:h-24 lg:h-32 w-auto object-contain drop-shadow-sm"
               />
             </motion.div>
 
@@ -99,9 +99,9 @@ export function Hero() {
               <Button
                 size="lg"
                 onClick={scrollToSchedule}
-                className="w-full sm:w-auto h-14 px-10 rounded-full font-black text-lg group bg-[#6366F1] hover:bg-[#6366F1]/90 shadow-[0_10px_20px_rgba(99,102,241,0.3)] transition-all hover:scale-105"
+                className="w-50 sm:w-auto h-14 px-10 rounded-full font-black text-base group bg-[#6366F1] hover:bg-[#6366F1]/90 shadow-[0_10px_20px_rgba(99,102,241,0.3)] transition-all hover:scale-105"
               >
-                View Schedule <ChevronRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                View Schedule <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </motion.div>
           </div>
