@@ -235,8 +235,8 @@ function DayPlannerContent() {
           <button
             onClick={() => setActiveSection("schedule")}
             className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-wider transition-all duration-300 border-2 shadow-lg ${activeSection === "schedule"
-                ? "bg-gradient-to-r from-indigo-600 to-blue-600 border-transparent text-white scale-105 shadow-indigo-500/25 ring-2 ring-indigo-200 ring-offset-2"
-                : "bg-white border-slate-100 text-slate-500 hover:border-indigo-200 hover:text-indigo-600 hover:shadow-xl hover:-translate-y-1"
+              ? "bg-gradient-to-r from-indigo-600 to-blue-600 border-transparent text-white scale-105 shadow-indigo-500/25 ring-2 ring-indigo-200 ring-offset-2"
+              : "bg-white border-slate-100 text-slate-500 hover:border-indigo-200 hover:text-indigo-600 hover:shadow-xl hover:-translate-y-1"
               }`}
           >
             <Calendar className="w-5 h-5" />
@@ -245,8 +245,8 @@ function DayPlannerContent() {
           <button
             onClick={() => setActiveSection("sports")}
             className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-wider transition-all duration-300 border-2 shadow-lg ${activeSection === "sports"
-                ? "bg-gradient-to-r from-orange-500 to-pink-600 border-transparent text-white scale-105 shadow-orange-500/25 ring-2 ring-orange-200 ring-offset-2"
-                : "bg-white border-slate-100 text-slate-500 hover:border-orange-200 hover:text-orange-600 hover:shadow-xl hover:-translate-y-1"
+              ? "bg-gradient-to-r from-orange-500 to-pink-600 border-transparent text-white scale-105 shadow-orange-500/25 ring-2 ring-orange-200 ring-offset-2"
+              : "bg-white border-slate-100 text-slate-500 hover:border-orange-200 hover:text-orange-600 hover:shadow-xl hover:-translate-y-1"
               }`}
           >
             <Trophy className="w-5 h-5" />
@@ -255,8 +255,8 @@ function DayPlannerContent() {
           <button
             onClick={() => setActiveSection("food")}
             className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-wider transition-all duration-300 border-2 shadow-lg ${activeSection === "food"
-                ? "bg-gradient-to-r from-emerald-500 to-teal-600 border-transparent text-white scale-105 shadow-emerald-500/25 ring-2 ring-emerald-200 ring-offset-2"
-                : "bg-white border-slate-100 text-slate-500 hover:border-emerald-200 hover:text-emerald-600 hover:shadow-xl hover:-translate-y-1"
+              ? "bg-gradient-to-r from-emerald-500 to-teal-600 border-transparent text-white scale-105 shadow-emerald-500/25 ring-2 ring-emerald-200 ring-offset-2"
+              : "bg-white border-slate-100 text-slate-500 hover:border-emerald-200 hover:text-emerald-600 hover:shadow-xl hover:-translate-y-1"
               }`}
           >
             <Utensils className="w-5 h-5" />
