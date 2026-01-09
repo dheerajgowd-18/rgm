@@ -35,8 +35,8 @@ const eventData = {
         meal: "Breakfast",
         image: "/images/south-indian-breakfast-idli-vada.jpg",
         items: [
-          { name: "Idli & Vada", description: "With Sambar & Chutney" },
-          { name: "Pongal", description: "Ghee Pongal" },
+          { name: "Idly & Vada", description: "With Chutney & Sambar" },
+          { name: "Boiled Egg", description: "Protein rich" },
         ],
       },
       {
@@ -45,9 +45,9 @@ const eventData = {
         image: "/images/veg-fried-rice.png",
         items: [
           { name: "Vegetable Fried Rice", description: "Main Dish" },
-          { name: "Accompaniments", description: "Gobi Manchurian, Tomato Dal, Fryums" },
-          { name: "Staples", description: "Rice, Curd, Sambar" },
-          { name: "Special", description: "Sweet - Gulab Jamun" },
+          { name: "Accompaniments", description: "Raita, Bendi Bhoondi Fry, Budamkaya Pappu, Tomato Rasam, Chutney" },
+          { name: "Staples", description: "Plain Rice, Curd" },
+          { name: "Sweet", description: "Madatha Khaja" },
         ],
       },
       {
@@ -55,10 +55,10 @@ const eventData = {
         meal: "Dinner",
         image: "/images/pudina-rice.png",
         items: [
-          { name: "Pudina Rice", description: "Main Dish" },
-          { name: "Accompaniments", description: "Aloo Kurma, Egg/Veg Curry" },
-          { name: "Staples", description: "Rice, Rasam, Curd" },
-          { name: "Special", description: "Banana" },
+          { name: "Pudina Green Peas Pulao", description: "Main Dish" },
+          { name: "Curries & Sides", description: "Alu Tomato Curry, Dal, Sambar" },
+          { name: "Staples", description: "Plain Rice, Curd" },
+          { name: "Extras", description: "Pickle, Banana" },
         ],
       },
     ],
@@ -68,6 +68,7 @@ const eventData = {
     date: "January 11, 2026",
     schedule: [
       { time: "07:30 AM - 09:00 AM", title: "Breakfast", location: "Cafeteria" },
+      { time: "09:00 AM - 12:30 PM", title: "Sports Events", location: "Various Grounds" },
       { time: "12:30 PM - 02:00 PM", title: "Lunch", location: "Food Court" },
       { time: "02:00 PM - 05:30 PM", title: "Sports Events", location: "Various Grounds" },
       { time: "06:00 PM - 09:00 PM", title: "Cultural Fest", location: "Open Air Theatre" },
@@ -79,8 +80,8 @@ const eventData = {
         meal: "Breakfast",
         image: "/images/pongal-bonda.png",
         items: [
-          { name: "Pongal & Mysore Bonda", description: "With Chutney" },
-          { name: "Semiya Upma", description: "Light breakfast" },
+          { name: "Pongal & Mysore Bonda", description: "With Chutney & Sambar" },
+          { name: "Boiled Egg", description: "Protein rich" },
         ],
       },
       {
@@ -88,10 +89,10 @@ const eventData = {
         meal: "Lunch",
         image: "/images/lemon-rice-meal.png",
         items: [
-          { name: "Lemon Rice", description: "Main Dish" },
-          { name: "Accompaniments", description: "Dondakya Fry, Palakura Pappu, Raita" },
-          { name: "Staples", description: "Rice, Curd, Sambar" },
-          { name: "Special", description: "Boiled Egg" },
+          { name: "Lemon Rice", description: "Rice Variety" },
+          { name: "Vegetable & Pappu", description: "Dondakaya–Cornflakes fry, Akukura Pappu" },
+          { name: "Gravies", description: "Pepper Rasam, Majjiga Pulusu" },
+          { name: "Staples & Sweet", description: "Plain Rice, Curd, Annamayya Laddu, Chutney" },
         ],
       },
       {
@@ -99,10 +100,10 @@ const eventData = {
         meal: "Dinner",
         image: "/images/bagara-rice-feast.png",
         items: [
-          { name: "Bagara Rice", description: "Main Dish" },
-          { name: "Accompaniments", description: "Chicken/Paneer Curry" },
-          { name: "Staples", description: "Rice, Rasam, Curd" },
-          { name: "Special", description: "Banana" },
+          { name: "Rice & Breads", description: "Bagara Rice, Rumali Roti" },
+          { name: "Non-Veg", description: "Mutton Curry, Chicken Fry, Fish Fry" },
+          { name: "Vegetarian", description: "Kaju Tomato Curry, Paneer Butter Masala, Paneer Cheese Balls Fry" },
+          { name: "Staples & Sides", description: "Curd Rice (Fruits), Gongura Chutney, Dalcha, Plain Rice, Sambar" },
         ],
       },
     ],
@@ -112,6 +113,7 @@ const eventData = {
     date: "January 12, 2026",
     schedule: [
       { time: "07:30 AM - 09:00 AM", title: "Breakfast", location: "Cafeteria" },
+      { time: "09:00 AM - 12:30 PM", title: "Sports Events", location: "Various Grounds" },
       { time: "12:30 PM - 02:00 PM", title: "Lunch", location: "Food Court" },
       { time: "02:00 PM - 03:30 PM", title: "Sports Events", location: "Various Grounds" },
       { time: "03:30 PM - 04:30 PM", title: "Valedictory Function", location: "Main Auditorium" },
@@ -132,9 +134,9 @@ const eventData = {
         image: "/images/veg-pulao.png",
         items: [
           { name: "Vegetable Pulao", description: "Main Dish" },
-          { name: "Accompaniments", description: "Kothimeera Vankay, Akukura Pappu, Raita" },
-          { name: "Staples", description: "Rice, Curd, Sambar" },
-          { name: "Special", description: "Jilebi" },
+          { name: "Accompaniments", description: "Raita, Kothimeera Vankay, Akukura Pappu" },
+          { name: "Gravies", description: "Sambar, Chutney" },
+          { name: "Staples & Special", description: "Plain Rice, Curd, Jilebi" },
         ],
       },
     ],
