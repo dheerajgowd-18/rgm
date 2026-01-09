@@ -65,6 +65,9 @@ export default function RootLayout({
           browser extensions (e.g. Grammarly) or other runtime mutations on <body>. */}
       <body suppressHydrationWarning className={`font-sans antialiased`}>
         {children}
+        <div className="fixed bottom-4 right-4 z-[100] pointer-events-none select-none opacity-15 hover:opacity-100 transition-opacity duration-300">
+          <span className="text-xs font-black text-slate-900 font-mono tracking-widest">@dg</span>
+        </div>
         <Analytics />
       </body>
     </html>
