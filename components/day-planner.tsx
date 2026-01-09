@@ -134,7 +134,7 @@ const eventData = {
           { name: "Vegetable Pulao", description: "Main Dish" },
           { name: "Accompaniments", description: "Kothimeera Vankay, Akukura Pappu, Raita" },
           { name: "Staples", description: "Rice, Curd, Sambar" },
-          { name: "Special", description: "Tilobi" },
+          { name: "Special", description: "Jilebi" },
         ],
       },
     ],
@@ -294,7 +294,7 @@ function DayPlannerContent() {
         {activeSection === "sports" ? (
           // Gender Tabs for Sports
           <Tabs value={activeGender} onValueChange={setActiveGender} className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12 h-auto p-1.5 bg-white/50 backdrop-blur-sm border border-slate-200/60 shadow-inner rounded-2xl">
+            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12 h-auto p-1.5 bg-white backdrop-blur-sm border border-slate-200/60 shadow-lg rounded-2xl gap-2">
               <TabsTrigger
                 value="men"
                 className="py-3 text-sm sm:text-base font-black uppercase tracking-wider rounded-xl data-[state=active]:bg-slate-900 data-[state=active]:text-white data-[state=active]:shadow-lg text-slate-400 hover:text-slate-700 transition-all flex items-center justify-center gap-2"
@@ -425,7 +425,7 @@ function DayPlannerContent() {
         ) : (
           // Day Tabs for Schedule & Food
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full max-w-xl mx-auto grid-cols-3 mb-12 h-auto p-1.5 bg-white/50 backdrop-blur-sm border border-slate-200/60 shadow-inner rounded-2xl">
+            <TabsList className="grid w-full max-w-xl mx-auto grid-cols-3 mb-12 h-auto p-1.5 bg-white backdrop-blur-sm border border-slate-200/60 shadow-lg rounded-2xl gap-2">
               {["day1", "day2", "day3"].map((day, idx) => (
                 <TabsTrigger
                   key={day}
