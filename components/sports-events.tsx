@@ -42,6 +42,7 @@ const sports = [
     women: "17",
     color: "from-secondary/20 to-secondary/5",
     schedule: ["Day 1: 2:00 PM - Round 1", "Day 2: 3:00 PM - Semifinals", "Day 3: 2:00 PM - Finals"],
+    fixturesImage: "/images/volleyball-women-fixtures.jpg",
     teamsList: {
       men: [
         "MITS, Mdpalli", "GPCET, KNL", "JNTU, Kalikiri", "MIPER, KNL", "GPREC, KNL", "KORM, Kadapa",
@@ -260,136 +261,141 @@ function SportCard({ sport }: { sport: typeof sports[0] }) {
               </div>
             )}
           </div>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full h-11 rounded-xl border-slate-200 font-bold hover:bg-primary hover:border-primary hover:text-white transition-all text-sm bg-transparent"
-              >
-                View Details
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle className="text-2xl sm:text-3xl flex items-center justify-between">
-                  {sport.name}
-                </DialogTitle>
-              </DialogHeader>
 
-              <div className="mt-4">
-                <div className="space-y-6">
-                  {/* Teams Lists */}
-                  {sport.teamsList && (
-                    <Tabs defaultValue={sport.men ? "men" : "women"} className="w-full">
-                      <TabsList className="mb-4">
-                        {sport.men && <TabsTrigger value="men">Men's Teams ({sport.men})</TabsTrigger>}
-                        {sport.women && <TabsTrigger value="women">Women's Teams ({sport.women})</TabsTrigger>}
-                      </TabsList>
+          <div className="flex gap-2">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="w-full h-11 rounded-xl border-slate-200 font-bold hover:bg-primary hover:border-primary hover:text-white transition-all text-sm bg-transparent"
+                >
+                  View Details
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl sm:text-3xl flex items-center justify-between">
+                    {sport.name}
+                  </DialogTitle>
+                </DialogHeader>
 
-                      {/* Men's Tab */}
-                      {sport.men && (
-                        <TabsContent value="men">
-                          {/* Check if teamsList.men is Array or Object (Singles/Doubles) */}
-                          {Array.isArray(sport.teamsList.men) ? (
-                            <ScrollArea className="h-[200px] w-full rounded-md border p-4 bg-muted/20">
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                {sport.teamsList.men.map((team, idx) => (
-                                  <div key={idx} className="flex items-center gap-2 text-sm p-1.5 rounded hover:bg-muted/50">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
-                                    {team}
+                <div className="mt-4">
+                  <div className="space-y-6">
+                    {/* Teams Lists */}
+                    {sport.teamsList && (
+                      <Tabs defaultValue={sport.men ? "men" : "women"} className="w-full">
+                        <TabsList className="mb-4">
+                          {sport.men && <TabsTrigger value="men">Men's Teams ({sport.men})</TabsTrigger>}
+                          {sport.women && <TabsTrigger value="women">Women's Teams ({sport.women})</TabsTrigger>}
+                        </TabsList>
+
+                        {/* Men's Tab */}
+                        {sport.men && (
+                          <TabsContent value="men">
+                            {/* Check if teamsList.men is Array or Object (Singles/Doubles) */}
+                            {Array.isArray(sport.teamsList.men) ? (
+                              <ScrollArea className="h-[200px] w-full rounded-md border p-4 bg-muted/20">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                  {sport.teamsList.men.map((team, idx) => (
+                                    <div key={idx} className="flex items-center gap-2 text-sm p-1.5 rounded hover:bg-muted/50">
+                                      <div className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
+                                      {team}
+                                    </div>
+                                  ))}
+                                </div>
+                              </ScrollArea>
+                            ) : (
+                              <div className="space-y-4">
+                                {sport.teamsList.men?.singles && (
+                                  <div>
+                                    <h5 className="font-semibold text-sm mb-2 text-muted-foreground uppercase tracking-wide">Singles</h5>
+                                    <ScrollArea className="h-[150px] w-full rounded-md border p-3 bg-muted/20">
+                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                        {sport.teamsList.men.singles.map((team, idx) => (
+                                          <div key={idx} className="flex items-center gap-2 text-sm p-1">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" /> {team}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </ScrollArea>
                                   </div>
-                                ))}
-                              </div>
-                            </ScrollArea>
-                          ) : (
-                            <div className="space-y-4">
-                              {sport.teamsList.men?.singles && (
-                                <div>
-                                  <h5 className="font-semibold text-sm mb-2 text-muted-foreground uppercase tracking-wide">Singles</h5>
-                                  <ScrollArea className="h-[150px] w-full rounded-md border p-3 bg-muted/20">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                      {sport.teamsList.men.singles.map((team, idx) => (
-                                        <div key={idx} className="flex items-center gap-2 text-sm p-1">
-                                          <div className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" /> {team}
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </ScrollArea>
-                                </div>
-                              )}
-                              {sport.teamsList.men?.doubles && (
-                                <div>
-                                  <h5 className="font-semibold text-sm mb-2 text-muted-foreground uppercase tracking-wide">Doubles</h5>
-                                  <ScrollArea className="h-[150px] w-full rounded-md border p-3 bg-muted/20">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                      {sport.teamsList.men.doubles.map((team, idx) => (
-                                        <div key={idx} className="flex items-center gap-2 text-sm p-1">
-                                          <div className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" /> {team}
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </ScrollArea>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </TabsContent>
-                      )}
-
-                      {/* Women's Tab */}
-                      {sport.women && (
-                        <TabsContent value="women">
-                          {Array.isArray(sport.teamsList.women) ? (
-                            <ScrollArea className="h-[200px] w-full rounded-md border p-4 bg-muted/20">
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                {sport.teamsList.women.map((team, idx) => (
-                                  <div key={idx} className="flex items-center gap-2 text-sm p-1.5 rounded hover:bg-muted/50">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                                    {team}
+                                )}
+                                {sport.teamsList.men?.doubles && (
+                                  <div>
+                                    <h5 className="font-semibold text-sm mb-2 text-muted-foreground uppercase tracking-wide">Doubles</h5>
+                                    <ScrollArea className="h-[150px] w-full rounded-md border p-3 bg-muted/20">
+                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                        {sport.teamsList.men.doubles.map((team, idx) => (
+                                          <div key={idx} className="flex items-center gap-2 text-sm p-1">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" /> {team}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </ScrollArea>
                                   </div>
-                                ))}
+                                )}
                               </div>
-                            </ScrollArea>
-                          ) : (
-                            <div className="space-y-4">
-                              {sport.teamsList.women?.singles && (
-                                <div>
-                                  <h5 className="font-semibold text-sm mb-2 text-muted-foreground uppercase tracking-wide">Singles</h5>
-                                  <ScrollArea className="h-[150px] w-full rounded-md border p-3 bg-muted/20">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                      {sport.teamsList.women.singles.map((team, idx) => (
-                                        <div key={idx} className="flex items-center gap-2 text-sm p-1">
-                                          <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> {team}
-                                        </div>
-                                      ))}
+                            )}
+                          </TabsContent>
+                        )}
+
+                        {/* Women's Tab */}
+                        {sport.women && (
+                          <TabsContent value="women">
+                            {Array.isArray(sport.teamsList.women) ? (
+                              <ScrollArea className="h-[200px] w-full rounded-md border p-4 bg-muted/20">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                  {sport.teamsList.women.map((team, idx) => (
+                                    <div key={idx} className="flex items-center gap-2 text-sm p-1.5 rounded hover:bg-muted/50">
+                                      <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                                      {team}
                                     </div>
-                                  </ScrollArea>
+                                  ))}
                                 </div>
-                              )}
-                              {sport.teamsList.women?.doubles && (
-                                <div>
-                                  <h5 className="font-semibold text-sm mb-2 text-muted-foreground uppercase tracking-wide">Doubles</h5>
-                                  <ScrollArea className="h-[150px] w-full rounded-md border p-3 bg-muted/20">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                      {sport.teamsList.women.doubles.map((team, idx) => (
-                                        <div key={idx} className="flex items-center gap-2 text-sm p-1">
-                                          <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> {team}
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </ScrollArea>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </TabsContent>
-                      )}
-                    </Tabs>
-                  )}
+                              </ScrollArea>
+                            ) : (
+                              <div className="space-y-4">
+                                {sport.teamsList.women?.singles && (
+                                  <div>
+                                    <h5 className="font-semibold text-sm mb-2 text-muted-foreground uppercase tracking-wide">Singles</h5>
+                                    <ScrollArea className="h-[150px] w-full rounded-md border p-3 bg-muted/20">
+                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                        {sport.teamsList.women.singles.map((team, idx) => (
+                                          <div key={idx} className="flex items-center gap-2 text-sm p-1">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> {team}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </ScrollArea>
+                                  </div>
+                                )}
+                                {sport.teamsList.women?.doubles && (
+                                  <div>
+                                    <h5 className="font-semibold text-sm mb-2 text-muted-foreground uppercase tracking-wide">Doubles</h5>
+                                    <ScrollArea className="h-[150px] w-full rounded-md border p-3 bg-muted/20">
+                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                        {sport.teamsList.women.doubles.map((team, idx) => (
+                                          <div key={idx} className="flex items-center gap-2 text-sm p-1">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> {team}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </ScrollArea>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </TabsContent>
+                        )}
+                      </Tabs>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+              </DialogContent>
+            </Dialog>
+
+
+          </div>
         </div>
       </Card>
     </motion.div>

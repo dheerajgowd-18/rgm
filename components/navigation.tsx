@@ -20,7 +20,7 @@ export function Navigation() {
   const navItems = [
     { label: "Home", href: "#" },
     { label: "Sports", href: "#sports" },
-    { label: "Schedule", href: "#schedule" },
+    { label: "Event Road Map", href: "#schedule" },
   ]
 
   const menuRef = useRef<HTMLDivElement | null>(null)
